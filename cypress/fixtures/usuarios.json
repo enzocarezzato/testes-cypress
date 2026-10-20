@@ -1,0 +1,34 @@
+{
+  "usuarios": [
+    {
+      "name": "Mariana Costa Ribeiro",
+      "email": "enzo.massa.mariana@email.com",
+      "password": "Senha1"
+    },
+    {
+      "name": "Rafael Souza",
+      "email": "enzo.massa.rafael@email.com.br",
+      "password": "Senha12345"
+    },
+    {
+      "name": "Beatriz Almeida dos Santos Ferreira",
+      "email": "enzo.massa.beatriz@email.com",
+      "password": "SenhaForte2026"
+    },
+    {
+      "name": "Lucas",
+      "email": "enzo.massa.lucas@email.com.br",
+      "password": "Abc123"
+    },
+    {
+      "name": "Júlia Gonçalves",
+      "email": "enzo.massa.julia@email.com",
+      "password": "Senha123456789"
+    },
+    {
+      "name": "Pedro Henrique Lima",
+      "email": "enzo.massa.pedro@email.com.br",
+      "password": "Adopet2026"
+    }
+  ]
+}
