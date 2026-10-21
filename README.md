@@ -100,11 +100,38 @@ Os prints de cada etapa estão em [`docs/prints`](docs/prints). Alguns exemplos:
 
 ## O que aprendi
 
-**Flaky test:** é um teste que às vezes passa e às vezes falha sem nenhuma mudança no código. No curso, isso aconteceu quando o teste passou a exigir que a API respondesse dentro de um tempo sorteado. A correção foi remover a dependência de tempo e deixar o Cypress esperar a resposta automaticamente.
+**Fundamentos do Cypress**
+- Estruturar testes com `describe`, `it` e `beforeEach`, e escrever roteiros de teste antes de automatizar.
+- Localizar elementos com o Selector Playground e preferir seletores `data-test`, que não quebram quando o layout muda.
+- Interagir com a página (`visit`, `get`, `type`, `click`, `check`, `clear`) e conferir o resultado com asserções (`should`, `be.visible`, `have.length`, `have.text`, `not.exist`).
 
-**Dados sensíveis:** são informações individuais que permitem acessar ou identificar uma pessoa, como tokens de acesso, senhas e dados pessoais. No Cypress, guardei o token no `cypress.env.json` (fora do Git, pelo `.gitignore`) e usei `log: false` na requisição para ele não aparecer no log dos testes.
+**Planejamento dos cenários**
+- Cobrir o caminho feliz e o caminho triste de cada fluxo, validando as mensagens de erro de campos vazios e inválidos.
+- Organizar cada teste em três etapas: preparar o estado (pré-condição), executar a ação e conferir o resultado (padrão AAA).
+- Usar valores limite na massa de dados, porque é nas bordas das regras que os bugs costumam aparecer.
 
-**Falso positivo:** um teste sem asserção pode passar mesmo quando a ação falhou. Por isso os testes conferem o resultado esperado e também o que não deveria acontecer.
+**Falso positivo:** um teste sem asserção pode passar mesmo quando a ação falhou. Vi isso acontecer no cadastro com e-mail repetido e no login com o servidor lento. Por isso os testes conferem o resultado esperado e também o que não deveria acontecer.
+
+**Reaproveitamento de código:** criar comandos personalizados (`cy.login` e `cy.cadastrar`) para não repetir os mesmos passos em vários testes.
+
+**Execução e documentação**
+- Rodar os testes em modo headless pelo terminal, um arquivo ou a suíte inteira.
+- Gravar vídeo das execuções e gerar relatórios em HTML e JSON com o Mochawesome.
+- Centralizar as execuções no Cypress Cloud e analisar falhas com o Test Replay.
+- Investigar um teste clicando nos comandos do log e lendo os detalhes no console do navegador.
+
+**Testes de API e dublês**
+- Simular respostas da API com `cy.intercept` (stub) para testar o front-end isolado, inclusive em situações de erro difíceis de provocar.
+- Fazer requisições direto na API com `cy.request`, conferindo status, corpo da resposta e propriedades, e entender a diferença entre testar o front e testar a API.
+- Entender o que é um token JWT, como ele é usado na autenticação e que os dados dentro dele podem ser lidos por qualquer pessoa.
+
+**Massa de dados:** separar os dados em fixtures e rodar o mesmo teste para vários usuários com `forEach`.
+
+**Flaky test:** é um teste que às vezes passa e às vezes falha sem nenhuma mudança no código. No curso, isso aconteceu quando o teste passou a exigir que a API respondesse dentro de um tempo sorteado, e também quando o servidor demorou a responder. A correção foi remover a dependência de tempo e deixar o Cypress esperar a resposta automaticamente.
+
+**Dados sensíveis:** são informações individuais que permitem acessar ou identificar uma pessoa, como tokens de acesso, senhas e dados pessoais. No Cypress, guardei o token no `cypress.env.json` (fora do Git, pelo `.gitignore`), deixei um arquivo de exemplo para quem baixar o projeto e usei `log: false` na requisição para ele não aparecer no log dos testes.
+
+**Git no dia a dia:** um commit por etapa, `.gitignore` para arquivos gerados e sensíveis, `git rm --cached` para tirar do controle de versão o que entrou por engano e `git mv` para renomear sem perder o histórico.
 
 ## Autor
 
