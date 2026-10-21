@@ -5,3 +5,4 @@ cypress/downloads/
 cypress/results/
 .vscode/
 .idea/
+cypress.env.json

@@ -1,11 +1,9 @@
 describe('Exercício 1 - Api Adopet', () => {
-  const authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMTY0M2NkNi03MTEyLTQxNWItOTVkMi0wNzkwNGIwZDFhMWMiLCJhZG9wdGVyTmFtZSI6IkFuYSBkZSBKZXN1cyIsImlhdCI6MTc5MjUwOTgyNCwiZXhwIjoxNzkyNzY5MDI0fQ.rjw6efMtd_2fdsc4dxYyC-vBTDm_yvos_gs_IpECqUA`;
-
   it('Nome do perfil', () => {
     cy.request({
       method: 'GET',
       url: 'https://adopet-api-i8qu.onrender.com/adotante/perfil/11643cd6-7112-415b-95d2-07904b0d1a1c',
-      headers: { authorization },
+      headers: { authorization: Cypress.env('authorization') },
     }).then((res) => {
       expect(res.status).to.be.equal(200);
       expect(res.body).is.not.empty;
